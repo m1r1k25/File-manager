@@ -1,0 +1,22 @@
+{
+  "name": "file-manager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m1r1k25/File-manager.git"
+  },
+  "author": "m1r1k25",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/m1r1k25/File-manager/issues"
+  },
+  "homepage": "https://github.com/m1r1k25/File-manager#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
