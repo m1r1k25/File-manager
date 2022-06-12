@@ -86,8 +86,6 @@ rl.on('line', (input) => {
   if(input.slice(0,11) === 'decompress ') {
     return decompress(input)
   }
-
-  
   if(input === '.exit') {
     return rl.close()
   } else {
