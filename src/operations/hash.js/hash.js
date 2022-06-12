@@ -26,5 +26,4 @@ export const hash = (input) => {
       console.log(`You are currently in ${currentDir}`)
   });
   fd.pipe(hash);
-  
 }

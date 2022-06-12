@@ -17,6 +17,8 @@ import { getCPUS } from './operations/os/cpus.js';
 import { getUsername } from './operations/os/getUsername.js';
 import { getArch } from './operations/os/getArch.js';
 import { hash } from './operations/hash.js/hash.js';
+import { compress } from './operations/compress/compress.js';
+import { decompress } from './operations/compress/decompress.js';
 
 const rl = createInterface({ input, output })
 export let currentDir = join(getHomeDir);
@@ -78,6 +80,13 @@ rl.on('line', (input) => {
   if(input.slice(0, 5) === 'hash ') {
     return hash(input)
   }
+  if(input.slice(0, 9) === 'compress ') {
+    return compress(input)
+  }
+  if(input.slice(0,11) === 'decompress ') {
+    return decompress(input)
+  }
+
   
   if(input === '.exit') {
     return rl.close()
