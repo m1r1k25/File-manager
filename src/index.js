@@ -16,6 +16,7 @@ import { getEOL } from './operations/os/getEOL.js';
 import { getCPUS } from './operations/os/cpus.js';
 import { getUsername } from './operations/os/getUsername.js';
 import { getArch } from './operations/os/getArch.js';
+import { hash } from './operations/hash.js/hash.js';
 
 const rl = createInterface({ input, output })
 export let currentDir = join(getHomeDir);
@@ -73,6 +74,9 @@ rl.on('line', (input) => {
   }
   if(input.slice(0, 17) === 'os --architecture') {
     return getArch()
+  }
+  if(input.slice(0, 5) === 'hash ') {
+    return hash(input)
   }
   
   if(input === '.exit') {

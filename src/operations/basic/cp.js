@@ -21,7 +21,7 @@ export const cp = (input) => {
     } else {
       createReadStream(pathToWrongFile).pipe(createWriteStream(pathToProperFile));
       console.log('file has coppied successfully')
-      console.log(`You are currently in ${currentDir}\n`)
+      console.log(`You are currently in ${currentDir}`)
     }
 
   } catch(err) {
