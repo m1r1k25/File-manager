@@ -1,12 +1,8 @@
 import { createInterface } from 'readline';
 import { stdin as input, stdout as output } from 'process'
-import { homedir } from 'os';
-import { join } from 'path';
 
 import { getCommand } from './getCommand.js';
 import { greet } from './utils/greet.js';
-
-export let currentDir = join(homedir());
 
 const rl = createInterface({ input, output });
 
