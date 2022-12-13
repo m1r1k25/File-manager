@@ -13,7 +13,7 @@ greet()
 rl.on('line', (command) => {
   getCommand(command)
   if(command.slice(0, 3) !== 'cd ') {
-    console.log(`You are currently in ${currentDir}`)
+    console.log(`You are currently in ${currentDir}`, '\n')
   }
   if(command === '.exit') rl.close()
 }).on('close', () => {

@@ -1,13 +1,17 @@
 import fs from 'fs/promises'
-import { ls } from "./operations/navigation/ls.js"
 import { homedir } from 'os';
 import { join } from 'path';
+
+import { ls } from "./operations/navigation/ls.js"
+import { cat } from './operations/basic/cat.js'
+
 import { errorText } from './utils/constants.js';
 
 export let currentDir = join(homedir());
 
 export const getCommand = async (command) => {
-  if(command === 'ls') return ls(currentDir)
+  //navigation
+  if(command === 'ls') return ls()
   if(command === 'up') {
     if(currentDir === homedir()) return
     return currentDir = join(currentDir, '..')
@@ -30,6 +34,10 @@ export const getCommand = async (command) => {
     }
     return 
   } 
+
+  //basic
+  if(command.slice(0, 4) === 'cat ') return cat(command)
+
   if(command === '.exit') return
   console.log('Invalid input, try to change command \n')
 }

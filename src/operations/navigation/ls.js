@@ -1,9 +1,10 @@
 import fs from 'fs/promises'
 import { join } from 'path'
+import { currentDir } from '../../getCommand.js'
 
 import { errorText } from '../../utils/constants.js'
 
-export const ls = async (currentDir) => {
+export const ls = async () => {
   try {
     let result = []
     await fs.access(currentDir)
@@ -15,7 +16,6 @@ export const ls = async (currentDir) => {
       console.table(result)
     } 
     catch(err) {
-      console.log(errorText)
       console.log(err.message)
     }
 }
