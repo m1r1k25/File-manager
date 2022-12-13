@@ -2,11 +2,11 @@ import fs from 'fs/promises'
 import { homedir } from 'os';
 import { join } from 'path';
 
-import { ls } from "./operations/navigation/ls.js"
+import { ls } from './operations/navigation/ls.js'
 import { cat } from './operations/basic/cat.js'
+import { add } from './operations/basic/add.js';
 
 import { errorText } from './utils/constants.js';
-import { add } from './operations/basic/add.js';
 
 export let currentDir = join(homedir());
 
@@ -38,6 +38,7 @@ export const getCommand = async (command) => {
   //basic
   if(command.slice(0, 4) === 'cat ') return cat(command)
   if(command.slice(0, 4) === 'add ') return add(command)
+  
 
   if(command === '.exit') return
   console.log('Invalid input, try to change command \n')
