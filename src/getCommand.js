@@ -6,6 +6,7 @@ import { ls } from "./operations/navigation/ls.js"
 import { cat } from './operations/basic/cat.js'
 
 import { errorText } from './utils/constants.js';
+import { add } from './operations/basic/add.js';
 
 export let currentDir = join(homedir());
 
@@ -18,10 +19,10 @@ export const getCommand = async (command) => {
   }
   if(command.slice(0, 3) === 'cd ') {
     try {
-      const newPath = join(currentDir, command.split(' ')[1])
+      const newPath = join(currentDir, command.split(' ')[1]) 
       const stat = await fs.lstat(newPath)
       if(stat.isFile()) {
-        throw new Error('You have choosed a file. Please, choose folder')
+        throw new Error()
       }
       await fs.access(newPath)
       currentDir = newPath
@@ -29,7 +30,6 @@ export const getCommand = async (command) => {
     } 
     catch(err) {
       console.log(errorText)
-      console.log(err.message)
       console.log(`You are currently in ${currentDir} \n`)
     }
     return 
@@ -37,6 +37,7 @@ export const getCommand = async (command) => {
 
   //basic
   if(command.slice(0, 4) === 'cat ') return cat(command)
+  if(command.slice(0, 4) === 'add ') return add(command)
 
   if(command === '.exit') return
   console.log('Invalid input, try to change command \n')

@@ -6,7 +6,6 @@ import { currentDir } from "../../getCommand.js"
 import { errorText } from "../../utils/constants.js"
 
 export const cat = async (command) => {
-  
   try {
     const pathName = command.split(' ')[1]
     if(pathName === path.join(currentDir, pathName.split(path.sep).slice(-1)[0]) 
@@ -28,9 +27,4 @@ export const cat = async (command) => {
   } catch(err) {
     console.log(errorText)
   }
-
-
-
-  // const readableStream = fs.createReadStream(pathToFile)   
-  // readableStream.pipe(process.stdout) 
 }
