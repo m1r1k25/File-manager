@@ -11,6 +11,7 @@ import { rn } from './operations/basic/rn.js';
 import { getEOL } from './operations/os/getEOL.js';
 import { getCPUS } from './operations/os/getCPUS.js';
 import { getHomeDir } from './operations/os/getHomeDir.js';
+import { getUserName } from './operations/os/getUserName.js';
 
 import { errorText } from './utils/constants.js';
 
@@ -50,6 +51,7 @@ export const getCommand = async (command) => {
   if(command.slice(0, 8) === 'os --EOL') return getEOL()
   if(command.slice(0, 9) === 'os --cpus') return getCPUS()
   if(command.slice(0, 12) === 'os --homedir') return getHomeDir()
+  if(command.slice(0, 13) === 'os --username') return getUserName()
 
   if(command === '.exit') return
   console.log('Invalid input, try to change command \n')
