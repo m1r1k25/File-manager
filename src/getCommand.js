@@ -3,10 +3,14 @@ import { homedir } from 'os';
 import { join } from 'path';
 
 import { ls } from './operations/navigation/ls.js'
+
 import { cat } from './operations/basic/cat.js'
 import { add } from './operations/basic/add.js';
 import { rn } from './operations/basic/rn.js';
-import { eol } from './operations/os/eol.js';
+
+import { getEOL } from './operations/os/getEOL.js';
+import { getCPUS } from './operations/os/getCPUS.js';
+import { getHomeDir } from './operations/os/getHomeDir.js';
 
 import { errorText } from './utils/constants.js';
 
@@ -43,7 +47,9 @@ export const getCommand = async (command) => {
   if(command.slice(0, 3) === 'rn ') return rn(command)
 
   //os
-  if(command.slice(0, 8) === 'os --EOL') return eol()
+  if(command.slice(0, 8) === 'os --EOL') return getEOL()
+  if(command.slice(0, 9) === 'os --cpus') return getCPUS()
+  if(command.slice(0, 12) === 'os --homedir') return getHomeDir()
 
   if(command === '.exit') return
   console.log('Invalid input, try to change command \n')
