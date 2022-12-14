@@ -5,6 +5,8 @@ import { join } from 'path';
 import { ls } from './operations/navigation/ls.js'
 import { cat } from './operations/basic/cat.js'
 import { add } from './operations/basic/add.js';
+import { rn } from './operations/basic/rn.js';
+import { eol } from './operations/os/eol.js';
 
 import { errorText } from './utils/constants.js';
 
@@ -38,7 +40,10 @@ export const getCommand = async (command) => {
   //basic
   if(command.slice(0, 4) === 'cat ') return cat(command)
   if(command.slice(0, 4) === 'add ') return add(command)
-  
+  if(command.slice(0, 3) === 'rn ') return rn(command)
+
+  //os
+  if(command.slice(0, 8) === 'os --EOL') return eol()
 
   if(command === '.exit') return
   console.log('Invalid input, try to change command \n')
