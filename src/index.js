@@ -6,7 +6,7 @@ import { greet } from './utils/greet.js';
 import { currentDir } from './getCommand.js';
 const rl = createInterface({ input, output });
 
-const userName = process.argv.slice(2)[0].split('=')[1]
+export const userName = process.argv.slice(2)[0].split('=')[1]
 
 greet()
 

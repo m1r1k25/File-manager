@@ -14,6 +14,8 @@ import { getHomeDir } from './operations/os/getHomeDir.js';
 import { getUserName } from './operations/os/getUserName.js';
 import { getArchitecture } from './operations/os/getArchitecture.js';
 
+import { hash } from './operations/hash/hash.js';
+
 import { errorText } from './utils/constants.js';
 
 export let currentDir = join(homedir());
@@ -54,6 +56,9 @@ export const getCommand = async (command) => {
   if(command.slice(0, 12) === 'os --homedir') return getHomeDir()
   if(command.slice(0, 13) === 'os --username') return getUserName()
   if(command.slice(0, 17) === 'os --architecture') return getArchitecture()
+
+  //hash
+  if(command.slice(0, 5) === 'hash ') return hash(command)
 
   if(command === '.exit') return
   
