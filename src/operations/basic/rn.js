@@ -5,35 +5,27 @@ import { currentDir } from "../../getCommand.js"
 
 import { errorText } from "../../utils/constants.js"
 
-//TODO: not completed
 export const rn = async (command) => {
-  const pathName = command.split(' ')[1]
+  const pathFromConsole = command.split(' ')[1]
   const newFileName = command.split(' ')[2]
+  let pathToFile = ''
   try {
-    if(pathName === path.join(currentDir, pathName.split(path.sep).slice(-1)[0]) 
-    || pathName === pathName.split(path.sep).slice(-1)[0]) {
-      const fileName = pathName === path.join(currentDir, pathName.split(path.sep).slice(-1)[0]) 
-      ? pathName 
-      : path.join(currentDir, pathName.split(path.sep).slice(-1)[0])
-      try {
-        await fs.access(path.join(pathName, '..', newFileName))
-        throw new Error(errorText);
-      } catch(err) {
-          try {
-              if(err.message === errorText) throw new Error(errorText);
-              await fs.access(fileName)
-              await fs.rename(fileName, path.join(fileName, '..', newFileName));
-              console.log('Files had been renamed succesfully')
-          }
-          catch {
-              throw new Error()    
-          }
-      } 
+    if(pathFromConsole.split(path.sep).length === 1) {
+      await fs.access(path.join(currentDir, pathFromConsole))
+      pathToFile = path.join(currentDir, pathFromConsole)
     } else {
-      throw new Error()
+      await fs.access(pathFromConsole)
+      pathToFile = path.join(pathFromConsole)
     }
+    await fs.access(pathToFile, '..', newFileName)
+    throw new Error(errorText);
   } catch(err) {
-    console.log(err.message)
-    console.log(errorText)
+    try {
+      if(err.message === errorText) throw new Error(errorText);
+      await fs.rename(pathToFile, path.join(pathToFile, '..', newFileName));
+      console.log('Files had been renamed succesfully')
+    } catch(err) {
+      console.log(errorText)   
+    }
   }
 }
