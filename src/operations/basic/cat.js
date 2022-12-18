@@ -6,24 +6,24 @@ import { currentDir } from "../../getCommand.js"
 import { errorText } from "../../utils/constants.js"
 
 export const cat = async (command) => {
+  const pathFromConsole = command.split(' ')[1]
   try {
-    const pathName = command.split(' ')[1]
-    if(pathName === path.join(currentDir, pathName.split(path.sep).slice(-1)[0]) 
-    || pathName === pathName.split(path.sep).slice(-1)[0]) {
-      const fileName = pathName === path.join(currentDir, pathName.split(path.sep).slice(-1)[0]) 
-      ? pathName 
-      : path.join(currentDir, pathName.split(path.sep).slice(-1)[0])
-      const stat = await fs.lstat(fileName)
-      if(stat.isDirectory()) {
-        throw new Error()
-      }
-      const readStream = createReadStream(fileName, 'utf-8');
-      readStream.on('data', function (chunk) {
-        console.log(chunk)
-      });
+    let pathToFile = ''
+    if(pathFromConsole.split(path.sep).length === 1) {
+      await fs.access(path.join(currentDir, pathFromConsole))
+      pathToFile = path.join(currentDir, pathFromConsole)
     } else {
+      await fs.access(pathFromConsole)
+      pathToFile = path.join(pathFromConsole)
+    }
+    const stat = await fs.lstat(pathToFile)
+    if(stat.isDirectory()) {
       throw new Error()
     }
+    const readStream = createReadStream(pathToFile, 'utf-8');
+    readStream.on('data', function (chunk) {
+      console.log(chunk)
+    });
   } catch(err) {
     console.log(errorText)
   }
