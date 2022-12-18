@@ -9,6 +9,7 @@ import { add } from './operations/basic/add.js';
 import { rn } from './operations/basic/rn.js';
 import { cp } from './operations/basic/cp.js';
 import { mv } from './operations/basic/mv.js';
+import { rm } from './operations/basic/rm.js';
 
 import { getEOL } from './operations/os/getEOL.js';
 import { getCPUS } from './operations/os/getCPUS.js';
@@ -53,6 +54,7 @@ export const getCommand = async (command) => {
   if(command.slice(0, 3) === 'rn ') return rn(command)
   if(command.slice(0, 3) === 'cp ') return cp(command)
   if(command.slice(0, 3) === 'mv ') return mv(command)
+  if(command.slice(0, 3) === 'rm ') return rm(command)
 
   //os
   if(command.slice(0, 8) === 'os --EOL') return getEOL()
