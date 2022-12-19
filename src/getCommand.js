@@ -17,6 +17,8 @@ import { getHomeDir } from './operations/os/getHomeDir.js';
 import { getUserName } from './operations/os/getUserName.js';
 import { getArchitecture } from './operations/os/getArchitecture.js';
 
+import { compress } from './operations/compress/compress.js';
+
 import { hash } from './operations/hash/hash.js';
 
 import { errorText } from './utils/constants.js';
@@ -65,6 +67,9 @@ export const getCommand = async (command) => {
 
   //hash
   if(command.slice(0, 5) === 'hash ') return hash(command)
+
+  //compress
+  if(command.slice(0, 9) === 'compress ') return compress(command)
 
   if(command === '.exit') return
   

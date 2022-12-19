@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import { currentDir } from '../../getCommand.js';
 
-const errorText = 'FS operation failed'
+import { errorText } from "../../utils/constants.js"
 
 export const cp = async (command) => {
   if(command.split(' ').length < 3) return console.log(errorText)
