@@ -18,6 +18,7 @@ import { getUserName } from './operations/os/getUserName.js';
 import { getArchitecture } from './operations/os/getArchitecture.js';
 
 import { compress } from './operations/compress/compress.js';
+import { decompress } from './operations/compress/decompress.js';
 
 import { hash } from './operations/hash/hash.js';
 
@@ -70,6 +71,7 @@ export const getCommand = async (command) => {
 
   //compress
   if(command.slice(0, 9) === 'compress ') return compress(command)
+  if(command.slice(0,11) === 'decompress ') return decompress(command)
 
   if(command === '.exit') return
   
